@@ -3,8 +3,8 @@ module Types
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
 
-    field :posts, [Types::PostType], null: false
-    field :authors, [Types::AuthorType], null: false
+    field :posts, [PostType], null: false
+    field :authors, [AuthorType], null: false
 
     def posts
       Post.all

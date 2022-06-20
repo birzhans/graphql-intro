@@ -1,14 +1,16 @@
 module Mutations
   class CreateAuthorMutation < BaseMutation
-    # TODO: define return fields
-    # field :post, Types::PostType, null: false
+    field :author, Types::AuthorType, null: false
 
-    # TODO: define arguments
-    # argument :name, String, required: true
+    argument :name, String, required: true
 
-    # TODO: define resolve method
-    # def resolve(name:)
-    #   { post: ... }
-    # end
+    def resolve(name:)
+      @author = Author.new(name: name)
+      if @author.save
+        { author: @author }
+      else
+        { errors: @author.errors.full_messages }
+      end
+    end
   end
 end
